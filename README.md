@@ -1,16 +1,13 @@
 # 🚀 Bootcamp Deloitte  
 
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
 Repositório com atividades e projetos desenvolvidos durante o **Bootcamp Deloitte**, programa de capacitação em desenvolvimento de software.
 
 ## 📌 Objetivo  
 Aplicar fundamentos de programação e boas práticas de desenvolvimento, com foco na preparação para o ambiente corporativo.
-
-## 🛠️ Tecnologias  
-- Java  
-- Spring Boot (fundamentos)  
-- Git e GitHub  
-- Banco de Dados  
-- Testes básicos (JUnit)  
 
 ## 📂 Estrutura  
 
