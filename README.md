@@ -9,13 +9,6 @@ Repositório com atividades e projetos desenvolvidos durante o **Bootcamp Deloit
 ## 📌 Objetivo  
 Aplicar fundamentos de programação e boas práticas de desenvolvimento, com foco na preparação para o ambiente corporativo.
 
-## 📂 Estrutura  
-
-bootcamp-deloitte/
-├── desafios/
-├── projetos/
-└── README.md
-
 ## 💼 Competências Desenvolvidas  
 - Lógica de Programação  
 - Programação Orientada a Objetos  
