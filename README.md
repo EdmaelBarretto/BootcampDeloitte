@@ -53,7 +53,7 @@ src/
 1. Clone o repositório:
 
 ```id="mdt6xk"
-git clone https://github.com/seuusuario/sistema-alunos-educacao-fisica-java.git
+git clone https://github.com/EdmaelBarretto/BootcampDeloitte.git
 ```
 
 2. Abra o projeto em uma IDE como **VS Code** ou **IntelliJ IDEA**.
