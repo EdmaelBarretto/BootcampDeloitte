@@ -4,7 +4,7 @@
 ![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-# Sistema de Cadastro de Alunos de Educação Física
+# Sistema de Cadastro e Agendamento de Alunos de Educação Física
 
 ## 📖 Descrição
 
@@ -25,18 +25,30 @@ O sistema simula um **CRUD (Create, Read, Update, Delete)** para gerenciamento d
 * Programação Orientada a Objetos (POO)
 * Git
 * GitHub
+* Spring Boot
+* Spring Data JPA
+* Hibernate
+* Maven   
 
 ## 📂 Estrutura do Projeto
 
 ```id="t1w2mo"
-src/
- ├── model/
- │   └── Aluno.java
- │
- ├── service/
- │   └── AlunoService.java
- │
- └── Main.java
+agendador-horarios
+│
+├── controller
+│   └── AgendamentoController.java
+│
+├── services
+│   └── AgendamentoService.java
+│
+├── infrastructure
+│   ├── entity
+│   │   └── Agendamento.java
+│   │
+│   └── repository
+│       └── AgendamentoRepository.java
+│
+└── AgendadorHorariosApplication.java
 ```
 
 ## 🧠 Conceitos Aplicados
@@ -47,6 +59,9 @@ src/
 * Métodos getters e setters
 * Estrutura CRUD
 * Organização de código em pacotes
+* Arquitetura em camadas (Controller, Service, Repository)
+* Organização de código em pacotes
+* Integração com banco de dados utilizando JPA
 
 ## ▶️ Como Executar o Projeto
 
