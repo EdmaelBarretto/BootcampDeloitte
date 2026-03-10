@@ -1,0 +1,55 @@
+package com.deloitte.agendador_horarios.services;
+
+import com.deloitte.agendador_horarios.infrastructure.entity.Agendamento;
+import com.deloitte.agendador_horarios.infrastructure.repository.AgendamentoRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+
+@Service
+@RequiredArgsConstructor
+public class AgendamentoService {
+
+    private final AgendamentoRepository agendamentoRepository;
+
+    public Agendamento salvarAgendamento(Agendamento agendamento){
+
+        LocalDateTime horaAgendamento = agendamento.getDataHoraAgendamento();
+        LocalDateTime horaFim = agendamento.getDataHoraAgendamento().plusMinutes(1);
+
+        Agendamento agendados = agendamentoRepository.findByServicoAndDataHoraAgendamentoBetween(agendamento.getObjetivo(),
+                horaAgendamento, horaFim);
+
+
+        if(Objects.nonNull(agendados)){
+            throw new RuntimeException("Horário já está preenchido");
+        }
+        return agendamentoRepository.save(agendamento);
+    }
+
+    public void deletarAgendamento(LocalDateTime dataHoraAgendamento, String aluno){
+        agendamentoRepository.deleteByDataHoraAgendamentoAndAluno(dataHoraAgendamento, aluno);
+    }
+
+    public List<Agendamento> buscarAgendamentosDia(LocalDate data){
+        LocalDateTime primeiraHoraDia = data.atStartOfDay();
+        LocalDateTime horaFinalDia = data.atTime(23, 59, 59);
+
+        return agendamentoRepository.findByDataHoraAgendamentoBetween(primeiraHoraDia, horaFinalDia);
+    }
+
+    public Agendamento alterarAgendamento(Agendamento agendamento, String aluno, LocalDateTime dataHoraAgendamento){
+        Agendamento agenda = agendamentoRepository.findByDataHoraAgendamentoAndAluno(dataHoraAgendamento, aluno);
+
+        if(Objects.isNull(agenda)){
+            throw new RuntimeException("Horário não está preenchido");
+        }
+
+        agendamento.setId(agenda.getId());
+        return agendamentoRepository.save(agendamento);
+    }
+}
