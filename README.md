@@ -4,90 +4,165 @@
 ![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-# Sistema de Cadastro e Agendamento de Alunos de Educação Física
+# 🛒 Produtos do Ed
 
 ## 📖 Descrição
 
-Projeto desenvolvido como atividade prática do **Bootcamp da Deloitte**, com o objetivo de aplicar conceitos fundamentais de **Java e Programação Orientada a Objetos (POO)**.
+O **Produtos do Ed** é uma **API RESTful** desenvolvida em **Java** utilizando **Spring Boot**.
+O projeto implementa um sistema simples de **CRUD (Create, Read, Update, Delete)** para gerenciamento de produtos.
 
-O sistema simula um **CRUD (Create, Read, Update, Delete)** para gerenciamento de alunos, permitindo cadastrar, listar, atualizar e remover registros.
+O objetivo do projeto é aplicar conceitos fundamentais de:
 
-## 🚀 Funcionalidades
+* **Programação Orientada a Objetos (POO)**
+* **Desenvolvimento de APIs REST**
+* **Persistência de dados com JPA/Hibernate**
+* **Arquitetura em camadas (Controller, Service, Repository, Model)**
 
-* Cadastro de alunos
-* Listagem de alunos cadastrados
-* Atualização de informações dos alunos
-* Remoção de alunos do sistema
+---
 
-## 🛠️ Tecnologias Utilizadas
+## 🚀 Tecnologias Utilizadas
 
-* Java
-* Programação Orientada a Objetos (POO)
-* Git
-* GitHub
-* Spring Boot
-* Spring Data JPA
-* Hibernate
-* Maven   
+* **Java 17**
+* **Spring Boot**
+* **Spring Web**
+* **Spring Data JPA**
+* **Hibernate**
+* **H2 Database**
+* **Maven**
+* **IntelliJ IDEA**
+
+---
 
 ## 📂 Estrutura do Projeto
 
-```id="t1w2mo"
-agendador-horarios
+```text
+src/main/java
 │
 ├── controller
-│   └── AgendamentoController.java
+│      ProdutoController.java
 │
-├── services
-│   └── AgendamentoService.java
+├── service
+│      ProdutoService.java
 │
-├── infrastructure
-│   ├── entity
-│   │   └── Agendamento.java
-│   │
-│   └── repository
-│       └── AgendamentoRepository.java
+├── repository
+│      ProdutoRepository.java
 │
-└── AgendadorHorariosApplication.java
+├── model
+│      Produto.java
+│
+└── ProdutosDoEd.java
 ```
 
-## 🧠 Conceitos Aplicados
+### Função das camadas
 
-* Classes e Objetos
-* Encapsulamento
-* Construtores
-* Métodos getters e setters
-* Estrutura CRUD
-* Organização de código em pacotes
-* Arquitetura em camadas (Controller, Service, Repository)
-* Organização de código em pacotes
-* Integração com banco de dados utilizando JPA
+| Camada     | Função                                    |
+| ---------- | ----------------------------------------- |
+| Controller | Recebe as requisições HTTP da API         |
+| Service    | Contém a lógica de negócio                |
+| Repository | Responsável pelo acesso ao banco de dados |
+| Model      | Representa a entidade do sistema          |
 
-## ▶️ Como Executar o Projeto
+---
 
-1. Clone o repositório:
+## 📌 Funcionalidades
 
-```id="mdt6xk"
+A API permite:
+
+* ➕ Cadastrar produtos
+* 📋 Listar produtos
+* ✏️ Atualizar produtos
+* ❌ Deletar produtos
+
+---
+
+## 🔗 Endpoints da API
+
+| Método HTTP | Endpoint       | Descrição               |
+| ----------- | -------------- | ----------------------- |
+| GET         | /produtos      | Lista todos os produtos |
+| POST        | /produtos      | Cria um novo produto    |
+| PUT         | /produtos/{id} | Atualiza um produto     |
+| DELETE      | /produtos/{id} | Remove um produto       |
+
+---
+
+## 🧪 Exemplo de requisição
+
+### Criar produto
+
+```http
+POST /produtos
+```
+
+Body JSON:
+
+```json
+{
+  "nome": "Camiseta",
+  "preco": 50
+}
+```
+
+Resposta esperada:
+
+```json
+{
+  "id": 1,
+  "nome": "Camiseta",
+  "preco": 50
+}
+```
+
+---
+
+## 🗄 Banco de Dados
+
+O projeto utiliza **H2 Database**, um banco de dados em memória usado para testes.
+
+Acesse o console do banco:
+
+```
+http://localhost:8080/h2-console
+```
+
+Configuração:
+
+```
+JDBC URL: jdbc:h2:mem:produtosdb
+User: sa
+Password:
+```
+
+---
+
+## ▶️ Como executar o projeto
+
+1. Clonar o repositório
+
+```
 git clone https://github.com/EdmaelBarretto/BootcampDeloitte.git
 ```
 
-2. Abra o projeto em uma IDE como **VS Code** ou **IntelliJ IDEA**.
+2. Abrir o projeto no IntelliJ
 
-3. Execute o arquivo:
+3. Executar a classe principal:
 
-```id="on2vtr"
-Main.java
+```
+ProdutosDoEd.java
 ```
 
-## 🎯 Objetivo do Projeto
+4. A aplicação iniciará em:
 
-Praticar o desenvolvimento em Java utilizando os princípios de Programação Orientada a Objetos e controle de versão com Git, conforme as atividades propostas no Bootcamp.
+```
+http://localhost:8080
+```
+
+---
 
 ## 👨‍💻 Autor
 
 **Edmael Barreto**
 
-Estudante de Análise e Desenvolvimento de Sistemas.
+Estudante de Análise e Desenvolvimento de Sistemas
 
-🎯 Foco em:
-Java • QA • Cloud
+🎯 Foco em: Java • QA • Cloud
