@@ -95,17 +95,17 @@ O projeto inclui **testes unitários e de controller**:
 
 O projeto utiliza **H2 Database**, um banco em memória usado para testes.
 
-Acesse o console do banco:
-http://localhost:8080/h2-console
+### Acesse o console do banco
 
----
+[http://localhost:8080/h2-console](http://localhost:8080/h2-console)
 
-Configuração:
+### Na tela de login
 
+- **JDBC URL:** `jdbc:h2:mem:produtosdb`  
+- **User:** `sa`  
+- **Password:** *(deixe em branco)*  
 
-JDBC URL: jdbc:h2:mem:produtosdb
-User: sa
-Password:
+Clique em **Connect**.  
 
 ---
 
