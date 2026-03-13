@@ -1,66 +1,54 @@
 # 🚀 Bootcamp Deloitte  
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)  
+![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)  
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)  
+![JUnit](https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white)  
+![H2 Database](https://img.shields.io/badge/H2-007396?style=for-the-badge&logo=h2-database&logoColor=white)  
+
+---
 
 # 🛒 Produtos do Ed
 
 ## 📖 Descrição
 
-O **Produtos do Ed** é uma **API RESTful** desenvolvida em **Java** utilizando **Spring Boot**.
-O projeto implementa um sistema simples de **CRUD (Create, Read, Update, Delete)** para gerenciamento de produtos.
+O **Produtos do Ed** é uma **API RESTful** desenvolvida em **Java** utilizando **Spring Boot**.  
+O projeto implementa um sistema de **CRUD (Create, Read, Update, Delete)** para gerenciamento de produtos, permitindo **criar, listar, atualizar e deletar produtos**, com validações, envio de email e testes automatizados.
 
-O objetivo do projeto é aplicar conceitos fundamentais de:
+O objetivo do projeto é aplicar conceitos de:
 
-* **Programação Orientada a Objetos (POO)**
-* **Desenvolvimento de APIs REST**
-* **Persistência de dados com JPA/Hibernate**
-* **Arquitetura em camadas (Controller, Service, Repository, Model)**
+* **Programação Orientada a Objetos (POO)**  
+* **Desenvolvimento de APIs REST**  
+* **Persistência de dados com JPA/Hibernate**  
+* **Arquitetura em camadas (Controller, Service, Repository, Model, Validation, EmailService)**  
+* **Testes unitários e de controller com JUnit + Mockito + MockMvc**  
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
-* **Java 17**
-* **Spring Boot**
-* **Spring Web**
-* **Spring Data JPA**
-* **Hibernate**
-* **H2 Database**
-* **Maven**
+* **Java 17**  
+* **Spring Boot**  
+* **Spring Web**  
+* **Spring Data JPA**  
+* **Hibernate**  
+* **H2 Database (in-memory)**  
+* **JUnit 5 + Mockito + MockMvc**  
+* **Maven**  
 * **IntelliJ IDEA**
 
----
 
-## 📂 Estrutura do Projeto
+## 🧩 Função das camadas
 
-```text
-src/main/java
-│
-├── controller
-│      ProdutoController.java
-│
-├── service
-│      ProdutoService.java
-│
-├── repository
-│      ProdutoRepository.java
-│
-├── model
-│      Produto.java
-│
-└── ProdutosDoEd.java
-```
-
-### Função das camadas
-
-| Camada     | Função                                    |
-| ---------- | ----------------------------------------- |
-| Controller | Recebe as requisições HTTP da API         |
-| Service    | Contém a lógica de negócio                |
-| Repository | Responsável pelo acesso ao banco de dados |
-| Model      | Representa a entidade do sistema          |
+| Camada     | Função                                                      |
+| ---------- | ----------------------------------------------------------- |
+| Controller | Recebe as requisições HTTP da API                           |
+| Service    | Contém a lógica de negócio                                  |
+| Repository | Responsável pelo acesso ao banco de dados                  |
+| Model      | Representa a entidade do sistema                            |
+| Validation | Contém validações de dados (nome, preço, estoque, etc.)    |
+| Email      | Serviço de envio de emails (simulação ou integração real)  |
+| Test       | Valida o comportamento do Controller e Service             |
 
 ---
 
@@ -68,10 +56,11 @@ src/main/java
 
 A API permite:
 
-* ➕ Cadastrar produtos
-* 📋 Listar produtos
-* ✏️ Atualizar produtos
-* ❌ Deletar produtos
+* ➕ Cadastrar produtos  
+* 📋 Listar produtos  
+* ✏️ Atualizar produtos  
+* ❌ Deletar produtos  
+* 🧪 Testes unitários e de controller automatizados  
 
 ---
 
@@ -84,85 +73,45 @@ A API permite:
 | PUT         | /produtos/{id} | Atualiza um produto     |
 | DELETE      | /produtos/{id} | Remove um produto       |
 
----
+## 🧪 Testes Automatizados
 
-## 🧪 Exemplo de requisição
+O projeto inclui **testes unitários e de controller**:
 
-### Criar produto
+### Testes de Controller (`ProdutoControllerTest.java`)
 
-```http
-POST /produtos
-```
+* Simulam requisições HTTP (GET, POST, PUT, DELETE) usando **MockMvc**  
+* **@WebMvcTest(ProdutoController.class)** → Roda apenas a camada de Controller  
+* **@MockBean ProdutoService** → O service é mockado (não acessa banco real)  
+* Verifica se todos os endpoints funcionam corretamente  
 
-Body JSON:
+### Testes de Service
 
-```json
-{
-  "nome": "Camiseta",
-  "preco": 50
-}
-```
-
-Resposta esperada:
-
-```json
-{
-  "id": 1,
-  "nome": "Camiseta",
-  "preco": 50
-}
-```
+* Valida regras de negócio implementadas no **ProdutoService**  
+* Garante que métodos como `salvar`, `listar`, `atualizar` e `deletar` retornem os resultados esperados  
 
 ---
 
 ## 🗄 Banco de Dados
 
-O projeto utiliza **H2 Database**, um banco de dados em memória usado para testes.
+O projeto utiliza **H2 Database**, um banco em memória usado para testes.
 
 Acesse o console do banco:
-
-```
 http://localhost:8080/h2-console
-```
-
-Configuração:
-
-```
-JDBC URL: jdbc:h2:mem:produtosdb
-User: sa
-Password:
-```
 
 ---
 
-## ▶️ Como executar o projeto
+Configuração:
 
-1. Clonar o repositório
 
-```
-git clone https://github.com/EdmaelBarretto/BootcampDeloitte.git
-```
-
-2. Abrir o projeto no IntelliJ
-
-3. Executar a classe principal:
-
-```
-ProdutosDoEd.java
-```
-
-4. A aplicação iniciará em:
-
-```
-http://localhost:8080
-```
+JDBC URL: jdbc:h2:mem:produtosdb
+User: sa
+Password:
 
 ---
 
 ## 👨‍💻 Autor
 
-**Edmael Barreto**
-
+Edmael Barreto
 Estudante de Análise e Desenvolvimento de Sistemas
 
-🎯 Foco em: Java • QA • Cloud
+🎯 Foco em: Java • QA • Cloud • APIs REST
