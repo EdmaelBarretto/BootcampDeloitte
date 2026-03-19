@@ -1,0 +1,181 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+<body class="bg-light">
+
+
+<div class="container py-5">
+
+
+```
+<h1 class="text-center mb-4">🛒 Produtos do Ed</h1>
+
+
+<!-- ALERTA -->
+<div id="mensagem"></div>
+
+
+<!-- FORMULÁRIO -->
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="card-title">Cadastro / Edição de Produto</h5>
+       
+        <form id="produtoForm">
+
+
+            <div class="row">
+                <!-- ID -->
+                <div class="col-md-3 mb-3">
+                    <input type="number" id="id" class="form-control" placeholder="ID (para editar)">
+                </div>
+
+
+                <!-- NOME -->
+                <div class="col-md-3 mb-3">
+                    <input type="text" id="nome" class="form-control" placeholder="Nome" required>
+                </div>
+
+
+                <!-- PREÇO -->
+                <div class="col-md-3 mb-3">
+                    <input type="number" step="0.01" id="preco" class="form-control" placeholder="Preço" required>
+                </div>
+
+
+                <!-- ESTOQUE -->
+                <div class="col-md-3 mb-3">
+                    <input type="number" id="estoque" class="form-control" placeholder="Estoque" required>
+                </div>
+            </div>
+
+
+            <div class="d-flex gap-2">
+                <button class="btn btn-success w-100" type="submit">Salvar (Cadastrar / Editar)</button>
+                <button class="btn btn-info w-100" type="button" onclick="buscar()">Buscar por ID</button>
+                <button class="btn btn-secondary w-100" type="button" onclick="limpar()">Limpar</button>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+```
+
+
+</div>
+
+
+<script>
+
+
+const API = "http://localhost:8080/produtos";
+
+
+// MENSAGEM
+function mostrarMensagem(msg, tipo="success") {
+    document.getElementById("mensagem").innerHTML = `
+        <div class="alert alert-${tipo} mt-3">${msg}</div>
+    `;
+}
+
+
+// BUSCAR POR ID
+function buscar() {
+    const id = document.getElementById("id").value;
+
+
+    if (!id) {
+        mostrarMensagem("Informe um ID para buscar", "warning");
+        return;
+    }
+
+
+    fetch(`${API}/${id}`)
+        .then(res => {
+            if (!res.ok) throw new Error();
+            return res.json();
+        })
+        .then(p => {
+            document.getElementById("nome").value = p.nome;
+            document.getElementById("preco").value = p.preco;
+            document.getElementById("estoque").value = p.estoque;
+
+
+            mostrarMensagem("Produto carregado!");
+        })
+        .catch(() => mostrarMensagem("Produto não encontrado", "danger"));
+}
+
+
+// SALVAR (CREATE ou UPDATE)
+document.getElementById("produtoForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+
+    const id = document.getElementById("id").value;
+
+
+    const produto = {
+        nome: document.getElementById("nome").value,
+        preco: parseFloat(document.getElementById("preco").value),
+        estoque: parseInt(document.getElementById("estoque").value)
+    };
+
+
+    const metodo = id ? "PUT" : "POST";
+    const url = id ? `${API}/${id}` : API;
+
+
+    fetch(url, {
+        method: metodo,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(produto)
+    })
+    .then(res => {
+        if (!res.ok) throw new Error();
+        mostrarMensagem(id ? "Produto atualizado!" : "Produto cadastrado!");
+        limpar();
+    })
+    .catch(() => mostrarMensagem("Erro ao salvar produto", "danger"));
+});
+
+
+// LIMPAR
+function limpar() {
+    document.getElementById("produtoForm").reset();
+}
+
+
+</script>
+
+
+<script>
+fetch("http://127.0.0.1:5500/Produtos%20do%20Ed/src/main/resources/index.html", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        nome: "Produto Teste",
+        preco: 10.0,
+        estoque: 5
+    })
+});
+</script>
+
+
+<footer class="text-center mt-5 py-3 border-top bg-white">
+    <p class="mb-0 text-muted small">
+        © 2026 Edmael Barreto. Todos os direitos reservados.
+    </p>
+</footer>
+
+
+</body>
+</html>
+
+
+</body>
+
+
+
