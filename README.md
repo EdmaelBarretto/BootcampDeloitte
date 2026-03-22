@@ -158,17 +158,6 @@ Content-Type: application/json
 
 ---
 
-## 🐛 Bugs Corrigidos
-
-Durante o desenvolvimento, os seguintes problemas foram identificados e corrigidos:
-
-1. **`ProdutoService`** — Métodos `listar()`, `buscarPorId()` e `deletar()` estavam ausentes, quebrando as operações de Read e Delete
-2. **`EmailService`** — Declarado sem `package` e sem `import`, impedindo a inicialização do Spring
-3. **`application.properties`** — Propriedade `spring.datasource.url` duplicada causava conflito
-4. **`pom.xml`** — Blocos de Markdown (` ``` `) dentro do XML tornavam o arquivo inválido para o Maven
-
----
-
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
