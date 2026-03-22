@@ -13,3 +13,18 @@ table td {
 button {
     font-weight: bold;
 }
+
+/* Alerta com transição suave */
+.alert {
+    transition: opacity 0.5s ease;
+}
+
+.alert:not(.show) {
+    opacity: 0;
+}
+
+/* Campo com máscara — alinha texto à direita para moeda */
+#preco {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
