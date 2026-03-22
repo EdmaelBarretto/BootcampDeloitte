@@ -1,111 +1,181 @@
 # 🚀 Bootcamp Deloitte  
-
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)  
-![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)  
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)  
-![JUnit](https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white)  
-![H2 Database](https://img.shields.io/badge/H2-007396?style=for-the-badge&logo=h2-database&logoColor=white)  
-
----
-
 # 🛒 Produtos do Ed
 
-## 📖 Descrição
+> CRUD completo de produtos com Spring Boot + H2 + Frontend estático
 
-O **Produtos do Ed** é uma **API RESTful** desenvolvida em **Java** utilizando **Spring Boot**.  
-O projeto implementa um sistema de **CRUD (Create, Read, Update, Delete)** para gerenciamento de produtos, permitindo **criar, listar, atualizar e deletar produtos**, com validações, envio de email e testes automatizados.
-
-O objetivo do projeto é aplicar conceitos de:
-
-* **Programação Orientada a Objetos (POO)**  
-* **Desenvolvimento de APIs REST**  
-* **Persistência de dados com JPA/Hibernate**  
-* **Arquitetura em camadas (Controller, Service, Repository, Model, Validation, EmailService)**  
-* **Testes unitários e de controller com JUnit + Mockito + MockMvc**  
+![Java](https://img.shields.io/badge/Java-17-orange?style=flat-square&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.5-brightgreen?style=flat-square&logo=springboot)
+![H2 Database](https://img.shields.io/badge/H2-Database-blue?style=flat-square)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?style=flat-square&logo=bootstrap)
+![Maven](https://img.shields.io/badge/Maven-Build-red?style=flat-square&logo=apachemaven)
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## 📋 Sobre o Projeto
 
-* **Java 17**  
-* **Spring Boot**  
-* **Spring Web**  
-* **Spring Data JPA**  
-* **Hibernate**  
-* **H2 Database (in-memory)**  
-* **JUnit 5 + Mockito + MockMvc**  
-* **Maven**  
-* **IntelliJ IDEA**
+Aplicação web full-stack para gerenciamento de produtos, desenvolvida com **Spring Boot** no backend e **HTML/CSS/JS + Bootstrap** no frontend. Utiliza banco de dados **H2** em arquivo para persistência entre reinicializações.
 
-
-## 🧩 Função das camadas
-
-| Camada     | Função                                                      |
-| ---------- | ----------------------------------------------------------- |
-| Controller | Recebe as requisições HTTP da API                           |
-| Service    | Contém a lógica de negócio                                  |
-| Repository | Responsável pelo acesso ao banco de dados                  |
-| Model      | Representa a entidade do sistema                            |
-| Validation | Contém validações de dados (nome, preço, estoque, etc.)    |
-| Email      | Serviço de envio de emails (simulação ou integração real)  |
-| Test       | Valida o comportamento do Controller e Service             |
+Desenvolvido como projeto de aprendizado para a **Deloitte e Porto Digital**.
 
 ---
 
-## 📌 Funcionalidades
+## ✨ Funcionalidades
 
-A API permite:
-
-* ➕ Cadastrar produtos  
-* 📋 Listar produtos  
-* ✏️ Atualizar produtos  
-* ❌ Deletar produtos  
-* 🧪 Testes unitários e de controller automatizados  
-
----
-
-## 🔗 Endpoints da API
-
-| Método HTTP | Endpoint       | Descrição               |
-| ----------- | -------------- | ----------------------- |
-| GET         | /produtos      | Lista todos os produtos |
-| POST        | /produtos      | Cria um novo produto    |
-| PUT         | /produtos/{id} | Atualiza um produto     |
-| DELETE      | /produtos/{id} | Remove um produto       |
-
-## 🧪 Testes Automatizados
-
-O projeto inclui **testes unitários e de controller**:
-
-### Testes de Controller (`ProdutoControllerTest.java`)
-
-* Simulam requisições HTTP (GET, POST, PUT, DELETE) usando **MockMvc**  
-* **@WebMvcTest(ProdutoController.class)** → Roda apenas a camada de Controller  
-* **@MockBean ProdutoService** → O service é mockado (não acessa banco real)  
-* Verifica se todos os endpoints funcionam corretamente  
-
-### Testes de Service
-
-* Valida regras de negócio implementadas no **ProdutoService**  
-* Garante que métodos como `salvar`, `listar`, `atualizar` e `deletar` retornem os resultados esperados  
+- ✅ **Cadastrar** produtos (nome, preço, estoque)
+- ✅ **Listar** todos os produtos em tabela
+- ✅ **Buscar** produto por ID
+- ✅ **Atualizar** dados de um produto
+- ✅ **Deletar** produto com confirmação visual
+- ✅ **Validações** de negócio (nome, preço e estoque)
+- ✅ **Notificação** em console ao cadastrar novo produto
 
 ---
 
-## 🗄 Banco de Dados
+## 🏗️ Arquitetura
 
-O projeto utiliza **H2 Database**, um banco em memória usado para testes.
+```
+produtos-do-ed/
+├── pom.xml
+└── src/
+    └── main/
+        ├── java/com/deloitteportodigital/produtos/
+        │   ├── ProdutosDoEd.java               # Entry point
+        │   ├── controller/
+        │   │   └── ProdutoController.java      # REST endpoints
+        │   ├── model/
+        │   │   └── Produto.java                # Entidade JPA
+        │   ├── repository/
+        │   │   └── ProdutoRepository.java      # Spring Data JPA
+        │   ├── service/
+        │   │   ├── ProdutoService.java         # Regras de negócio
+        │   │   └── EmailService.java           # Notificações
+        │   └── validation/
+        │       ├── ProdutoValidation.java      # Interface
+        │       ├── EstoqueValidation.java
+        │       ├── NomeProdutoValidation.java
+        │       └── PrecoProdutoValidation.java
+        └── resources/
+            ├── application.properties
+            └── static/
+                ├── index.html
+                ├── css/style.css
+                └── js/app.js
+```
 
-### Acesse o console do banco
+---
 
-[http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+## 🚀 Como Rodar
 
-### Na tela de login
+### Pré-requisitos
 
-- **JDBC URL:** `jdbc:h2:mem:produtosdb`  
-- **User:** `sa`  
-- **Password:** *(deixe em branco)*  
+- Java 17+
+- Maven 3.8+ (ou use o `mvnw` incluso no projeto)
 
-Clique em **Connect**.  
+### Passo a passo
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/EdmaelBarretto/BootcampDeloitte.git
+
+# 2. Entre na pasta do projeto
+cd produtos-do-ed
+
+# 3. Rode a aplicação
+./mvnw spring-boot:run
+
+# Windows
+mvnw.cmd spring-boot:run
+```
+
+### Acessos
+
+| Serviço | URL |
+|--------|-----|
+| 🌐 Frontend | http://localhost:8080 |
+| 🗄️ Console H2 | http://localhost:8080/h2-console |
+| 🔌 API REST | http://localhost:8080/produtos |
+
+> **Console H2:** JDBC URL: `jdbc:h2:file:./data/produtosdb` · User: `sa` · Senha: *(vazio)*
+
+---
+
+## 🔌 Endpoints da API
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/produtos` | Lista todos os produtos |
+| `GET` | `/produtos/{id}` | Busca produto por ID |
+| `POST` | `/produtos` | Cria novo produto |
+| `PUT` | `/produtos/{id}` | Atualiza produto existente |
+| `DELETE` | `/produtos/{id}` | Remove produto |
+
+### Exemplo de Requisição (POST)
+
+```json
+POST /produtos
+Content-Type: application/json
+
+{
+  "nome": "Teclado Mecânico",
+  "preco": 349.90,
+  "estoque": 15
+}
+```
+
+### Exemplo de Resposta
+
+```json
+{
+  "id": 1,
+  "nome": "Teclado Mecânico",
+  "preco": 349.90,
+  "estoque": 15
+}
+```
+
+---
+
+## ✅ Validações de Negócio
+
+| Regra | Mensagem de Erro |
+|-------|-----------------|
+| Nome deve ter no mínimo 3 caracteres | `"Nome do produto inválido"` |
+| Preço deve ser maior que zero | `"O preço deve ser maior que zero"` |
+| Estoque não pode ser negativo | `"O estoque não pode ser negativo"` |
+
+---
+
+## 🛠️ Tecnologias
+
+| Camada | Tecnologia |
+|--------|-----------|
+| Linguagem | Java 17 |
+| Framework | Spring Boot 3.2.5 |
+| Persistência | Spring Data JPA + H2 |
+| Build | Maven |
+| Frontend | HTML5 + CSS3 + JavaScript |
+| UI | Bootstrap 5.3 |
+
+---
+
+## 🐛 Bugs Corrigidos
+
+Durante o desenvolvimento, os seguintes problemas foram identificados e corrigidos:
+
+1. **`ProdutoService`** — Métodos `listar()`, `buscarPorId()` e `deletar()` estavam ausentes, quebrando as operações de Read e Delete
+2. **`EmailService`** — Declarado sem `package` e sem `import`, impedindo a inicialização do Spring
+3. **`application.properties`** — Propriedade `spring.datasource.url` duplicada causava conflito
+4. **`pom.xml`** — Blocos de Markdown (` ``` `) dentro do XML tornavam o arquivo inválido para o Maven
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+<p align="center">Feito com Java e Spring Boot</p>
 
 ---
 
