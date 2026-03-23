@@ -218,7 +218,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
-<p align="center">Feito com ☕ e Spring Boot</p>
+<p align="center">Feito com Java e Spring Boot</p>
 
 ---
 
